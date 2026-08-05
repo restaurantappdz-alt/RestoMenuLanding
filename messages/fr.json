@@ -1,15 +1,15 @@
 {
   "meta": {
     "title": "RestoMenu — Vos menus numériques, en direct sur vos TV",
-    "description": "Gérez les menus numériques de votre restaurant depuis votre téléphone et diffusez-les sur chaque TV en temps réel."
+    "description": "Gérez les menus numériques de votre restaurant depuis votre téléphone et diffusez-les en direct sur tous vos écrans."
   },
   "nav": {
-    "join": "Contactez-nous",
+    "join": "Contact",
     "menu": "Menu"
   },
   "hero": {
-    "words": ["Votre", "Menu,", "Toujours", "Frais.", "Toujours", "En direct."],
-    "subtitle": "Arrêtez de perdre du temps et de l'argent avec des tableaux de menus statiques. Modifiez vos plats depuis votre téléphone et voyez-les apparaître sur chaque TV — instantanément.",
+    "words": ["Votre", "menu,", "toujours", "frais.", "Toujours", "en direct."],
+    "subtitle": "Fini de perdre du temps et de l'argent avec des menus statiques. Modifiez vos plats depuis votre téléphone et regardez-les apparaître sur chaque TV — instantanément.",
     "getApp": "Télécharger l'app",
     "watchDemo": "Voir la démo",
     "phoneLabel": "Éditeur de menu",
@@ -18,39 +18,39 @@
   },
   "problem": {
     "eyebrow": "Le Problème",
-    "title": "Ne gaspillez plus votre argent et votre temps avec les menus statiques",
-    "description": "À chaque changement de prix ou plat ajouté, vous perdez des heures à concevoir une nouvelle image, à l'exporter et à l'envoyer sur vos écrans. Les tableaux statiques rendent votre restaurant dépassé et vous coûtent des ventes à cause des occasions quotidiennes manquées.",
+    "title": "Fini le temps et l'argent perdus sur des menus statiques",
+    "description": "Changer un prix, ajouter un plat ? Des heures perdues à créer une nouvelle image, l'exporter et l'envoyer sur vos écrans. Les menus statiques font paraître votre restaurant dépassé — et vos plats du jour passent inaperçus.",
     "oldWay": {
-      "title": "L'ancienne méthode",
+      "title": "Avant",
       "bullets": [
         "Des heures pour chaque mise à jour",
-        "Besoin d'un designer",
-        "Rendu bon marché et pixelisé",
+        "Un designer indispensable",
+        "Un rendu bon marché et pixelisé",
         "Un seul écran"
       ]
     },
     "newWay": {
       "title": "Avec RestoMenu",
       "bullets": [
-        "Mise à jour en quelques secondes depuis votre téléphone",
+        "Une mise à jour en quelques secondes, depuis votre téléphone",
         "Aucune compétence en design requise",
-        "Des layouts beaux et modernes",
-        "Écrans illimités, menus différents"
+        "Des mises en page soignées et modernes",
+        "Des écrans illimités, des menus différents"
       ]
     }
   },
   "solution": {
     "eyebrow": "La Solution",
     "title": "Pilotez depuis votre téléphone,",
-    "titleAccent": "voyez-le apparaître sur la TV",
+    "titleAccent": "et regardez-le apparaître à l'écran",
     "screens": [
-      { "title": "Éditeur de menu", "caption": "Renommez, réordonnez et tarifez chaque plat." },
+      { "title": "Éditeur de menu", "caption": "Renommez, réordonnez et fixez le prix de chaque plat." },
       { "title": "Mise à jour de prix", "caption": "Plat du Jour 1 200 DA — en direct sur la TV." },
       { "title": "Spécial du jour", "caption": "SPÉCIAL DU JOUR — Tajine de poulet." }
     ],
     "tvLabel": "TV 1 · Comptoir",
     "synced": "SYNCÉ",
-    "cloudNote": "Notre cloud synchronise tout en temps réel. Vous, vous cuisinez."
+    "cloudNote": "Notre cloud synchronise tout en temps réel. Vous n'avez plus qu'à cuisiner."
   },
   "features": {
     "eyebrow": "Fonctionnalités",
@@ -58,45 +58,45 @@
     "items": [
       { "title": "Mises à jour instantanées", "body": "Changement de prix ? Spécial du jour ? Des secondes, pas des heures." },
       { "title": "Multi-écrans", "body": "Des menus différents pour le comptoir, la terrasse, le salon." },
-      { "title": "Templates variés", "body": "Du Classic Gold au Moroccan Teal." },
-      { "title": "Localisé", "body": "Anglais, français, arabe + dinar." },
+      { "title": "Des modèles variés", "body": "Du Classic Gold au Moroccan Teal." },
+      { "title": "Multilingue", "body": "Anglais, français, arabe + dinar." },
       { "title": "Extras", "body": "Ajoutez des suppléments comme des frites à n'importe quel plat." },
       { "title": "Zéro installation", "body": "Pas de serveur, pas de câbles. Juste un lien." }
     ]
   },
   "templates": {
-    "eyebrow": "Templates",
-    "title": "Choisissez le look de votre TV",
-    "subtitle": "Choisissez un template prêt à l'emploi ou laissez-nous en concevoir un à votre image.",
+    "eyebrow": "Modèles",
+    "title": "Choisissez le style de votre TV",
+    "subtitle": "Choisissez un modèle prêt à l'emploi, ou laissez-nous en créer un à l'image de votre marque.",
     "builtin": {
-      "title": "Templates intégrés",
-      "note": "De nombreux templates sont disponibles dans l'app.",
-      "names": ["Classic Gold", "Marocain", "Pro Premium"]
+      "title": "Modèles intégrés",
+      "note": "De nombreux modèles sont disponibles dans l'app.",
+      "names": ["Classic Gold", "Moroccan", "Pro Premium"]
     },
     "custom": {
       "title": "Design sur mesure",
-      "text": "Vous voulez quelque chose d'unique ? Nous créerons un layout qui reflète l'identité de votre restaurant.",
+      "text": "Vous voulez quelque chose d'unique ? Nous créerons une mise en page qui reflète l'identité de votre restaurant.",
       "button": "Demander un design sur mesure"
     }
   },
   "howItWorks": {
     "eyebrow": "Comment ça marche",
-    "title": "Nous avons fait le travail. Vous, vous cuisinez.",
+    "title": "On a fait le plus dur. Vous, vous cuisinez.",
     "steps": [
       { "title": "Créez votre menu", "body": "Composez-le une fois dans l'app. Prix, photos, extras." },
-      { "title": "Ajoutez un écran TV", "body": "Choisissez l'écran, choisissez le template. Terminé." },
+      { "title": "Ajoutez un écran TV", "body": "Choisissez l'écran, choisissez le modèle. Terminé." },
       { "title": "Ouvrez le lien et lancez-vous", "body": "Votre menu apparaît sur chaque TV instantanément." }
     ]
   },
   "pricing": {
     "eyebrow": "Tarifs",
-    "title": "Une tarification simple et transparente",
+    "title": "Des prix simples et transparents",
     "starter": {
       "name": "Starter",
       "price": "0 DA",
-      "period": "Essai gratuit 7 jours",
+      "period": "Essai gratuit de 7 jours",
       "cta": "Commencer l'essai gratuit",
-      "features": ["Un menu", "Templates de base", "1 écran", "Aucune carte bancaire requise"]
+      "features": ["Un menu", "Modèles de base", "1 écran", "Aucune carte bancaire requise"]
     },
     "pro": {
       "name": "Pro",
@@ -104,7 +104,7 @@
       "period": "/mois",
       "cta": "Choisir Pro",
       "badge": "Recommandé",
-      "features": ["Menus illimités", "Templates variés", "5 écrans", "Support prioritaire"]
+      "features": ["Menus illimités", "Modèles variés", "5 écrans", "Support prioritaire"]
     },
     "premium": {
       "name": "Premium",
@@ -114,15 +114,15 @@
       "features": [
         "Tout ce qui est dans Pro",
         "Écrans illimités",
-        "Template personnalisé inclus",
-        "Responsable de compte dédié"
+        "Modèle personnalisé inclus",
+        "Un gestionnaire de compte dédié"
       ]
     }
   },
   "contact": {
     "eyebrow": "Contact",
-    "title": "Parlons-en",
-    "subtitle": "Une question, ou un design sur mesure pour votre restaurant ? Écrivez-nous — nous répondons sous 24 h.",
+    "title": "Écrivez-nous",
+    "subtitle": "Une question, ou un design sur mesure pour votre restaurant ? Envoyez-nous un message — réponse sous 24 h.",
     "info": {
       "email": "Email",
       "phone": "Téléphone",
@@ -136,7 +136,7 @@
     "messagePlaceholder": "Parlez-nous de votre restaurant…",
     "submit": "Envoyer le message",
     "success": "Merci ! Nous vous répondrons très vite.",
-    "error": "Veuillez renseigner votre nom, un email valide et un message."
+    "error": "Merci de renseigner votre nom, un email valide et un message."
   },
   "footer": {
     "tagline": "Des menus numériques, diffusés en direct sur vos TV.",
