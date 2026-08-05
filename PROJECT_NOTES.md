@@ -1,4 +1,4 @@
-# RestoMenu Landing — Project Notes
+#### RestoMenu Landing — Project Notes
 
 Marketing landing page for **RestoMenu** — a mobile app that lets restaurant
 owners manage digital menus and broadcast them live to TV screens. Built with
