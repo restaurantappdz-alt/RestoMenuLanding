@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
@@ -38,6 +38,14 @@ export async function generateMetadata({
     description: t("description"),
   };
 }
+
+// Safe-area insets (notches/home indicator) need viewport-fit=cover on iOS.
+export const viewport: Viewport = {
+  themeColor: "#0b0c10",
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
 
 export default async function LocaleLayout({
   children,

@@ -2,6 +2,7 @@ import { setRequestLocale } from "next-intl/server";
 import { locales, type Locale } from "@/i18n";
 import FloatingIcons from "@/components/FloatingIcons";
 import Navbar from "@/components/Navbar";
+import StickyCTA from "@/components/StickyCTA";
 import Hero from "@/components/Hero";
 import Problem from "@/components/Problem";
 import Solution from "@/components/Solution";
@@ -25,6 +26,7 @@ export default function HomePage({ params: { locale } }: { params: { locale: Loc
       <FloatingIcons />
 
       <Navbar />
+      <StickyCTA />
 
       <Hero />
       <SectionDivider />
