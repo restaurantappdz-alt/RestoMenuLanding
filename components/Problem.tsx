@@ -13,7 +13,7 @@ export default function Problem() {
   const newWay = t.raw("newWay.bullets") as string[];
 
   return (
-    <section id="problem" className="relative mx-auto max-w-5xl px-5 py-20 sm:px-8">
+    <section id="problem" className="relative mx-auto max-w-5xl px-5 py-14 sm:py-20 sm:px-8">
       <SectionHeading
         eyebrow={t("eyebrow")}
         title={

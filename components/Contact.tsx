@@ -47,7 +47,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative mx-auto max-w-6xl px-5 py-20 sm:px-8">
+    <section id="contact" className="relative mx-auto max-w-6xl px-5 py-14 sm:py-20 sm:px-8">
       <SectionHeading eyebrow={t("eyebrow")} title={t("title")} />
 
       <motion.p
@@ -102,7 +102,7 @@ export default function Contact() {
               onChange={set("name")}
               placeholder={t("namePlaceholder")}
               aria-label={t("namePlaceholder")}
-              className="glass w-full rounded-full px-5 py-3 text-sm text-heading placeholder:text-faint focus:border-gold/60 focus:outline-none"
+              className="glass w-full rounded-full px-5 py-3.5 text-base text-heading placeholder:text-faint focus:border-gold/60 focus:outline-none"
             />
             <input
               type="email"
@@ -110,7 +110,7 @@ export default function Contact() {
               onChange={set("email")}
               placeholder={t("emailPlaceholder")}
               aria-label={t("emailPlaceholder")}
-              className="glass w-full rounded-full px-5 py-3 text-sm text-heading placeholder:text-faint focus:border-gold/60 focus:outline-none"
+              className="glass w-full rounded-full px-5 py-3.5 text-base text-heading placeholder:text-faint focus:border-gold/60 focus:outline-none"
             />
           </div>
           <textarea
@@ -119,11 +119,11 @@ export default function Contact() {
             onChange={set("message")}
             placeholder={t("messagePlaceholder")}
             aria-label={t("messagePlaceholder")}
-            className="glass mt-4 w-full resize-none rounded-2xl px-5 py-3 text-sm text-heading placeholder:text-faint focus:border-gold/60 focus:outline-none"
+            className="glass mt-4 w-full resize-none rounded-2xl px-5 py-3.5 text-base text-heading placeholder:text-faint focus:border-gold/60 focus:outline-none"
           />
 
           <div className="mt-5 flex items-center gap-4">
-            <button type="submit" className="btn-gold shrink-0" disabled={status === "loading"}>
+            <button type="submit" className="btn-gold shrink-0 min-h-12" disabled={status === "loading"}>
               {status === "loading" ? (
                 <span className="h-4 w-4 animate-spin rounded-full border-2 border-gold-ink/30 border-t-gold-ink" />
               ) : (

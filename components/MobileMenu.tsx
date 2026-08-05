@@ -68,7 +68,7 @@ export default function MobileMenu({
             className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-surface md:hidden"
           >
             {/* Content offset below the fixed navbar */}
-            <div className="flex min-h-full flex-col px-5 pb-8 pt-20 sm:px-8">
+            <div className="flex min-h-full flex-col px-5 pb-[max(1rem,env(safe-area-inset-bottom))] pt-20 sm:px-8">
               {/* Top row: logo + close button */}
               <div className="flex items-center justify-between">
                 <span className="flex items-baseline gap-0.5">

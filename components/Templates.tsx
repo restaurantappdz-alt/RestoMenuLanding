@@ -18,7 +18,7 @@ export default function Templates() {
   ];
 
   return (
-    <section id="templates" className="relative mx-auto max-w-5xl px-5 py-20 sm:px-8">
+    <section id="templates" className="relative mx-auto max-w-5xl px-5 py-14 sm:py-20 sm:px-8">
       <SectionHeading eyebrow={t("eyebrow")} title={t("title")} />
 
       <motion.p
@@ -47,7 +47,7 @@ export default function Templates() {
                     <div className="h-1 w-7 rounded-full bg-white/15" />
                   </div>
                 </div>
-                <p className="border-t border-line px-2 py-1.5 text-center text-[10px] font-semibold text-body">
+                <p className="border-t border-line px-2 py-1.5 text-center text-xs font-semibold text-body">
                   {n}
                 </p>
               </div>

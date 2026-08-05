@@ -19,7 +19,7 @@ export default function HowItWorks() {
   const steps = t.raw("steps") as { title: string; body: string }[];
 
   return (
-    <section id="how-it-works" className="relative mx-auto max-w-5xl px-5 py-20 sm:px-8">
+    <section id="how-it-works" className="relative mx-auto max-w-5xl px-5 py-14 sm:py-20 sm:px-8">
       <SectionHeading eyebrow={t("eyebrow")} title={t("title")} />
 
       <motion.div

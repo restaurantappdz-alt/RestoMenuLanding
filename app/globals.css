@@ -86,6 +86,7 @@ html {
 html[lang="ar"],
 html[lang="ar"] body {
   font-family: var(--font-arabic), var(--font-outfit), system-ui, sans-serif;
+  line-height: 1.8; /* Arabic needs looser leading for diacritics */
 }
 
 body {

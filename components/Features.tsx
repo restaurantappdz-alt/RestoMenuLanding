@@ -29,7 +29,7 @@ export default function Features() {
   const items = t.raw("items") as { title: string; body: string }[];
 
   return (
-    <section id="features" className="relative mx-auto max-w-5xl px-5 py-20 sm:px-8">
+    <section id="features" className="relative mx-auto max-w-5xl px-5 py-14 sm:py-20 sm:px-8">
       <SectionHeading eyebrow={t("eyebrow")} title={t("title")} />
 
       <motion.div

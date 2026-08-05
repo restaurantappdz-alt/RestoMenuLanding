@@ -37,11 +37,11 @@ export default function Navbar() {
         initial={{ y: -64, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: "spring", stiffness: 120, damping: 18 }}
-        className="glass fixed inset-x-0 top-0 z-[60] border-x-0 border-t-0"
+        className="glass fixed inset-x-0 top-0 z-[60] border-x-0 border-t-0 supports-[padding-top:env(safe-area-inset-top)]:pt-[env(safe-area-inset-top)]"
       >
-        <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-8">
+        <nav className="mx-auto flex min-h-16 max-w-7xl items-center justify-between px-5 sm:px-8">
           {/* Logo — gold dot after "Menu" */}
-          <a href="#top" className="flex items-baseline gap-0.5">
+          <a href="#top" className="flex min-h-11 items-center gap-0.5">
             <span className="text-xl font-bold tracking-tight text-heading">RestoMenu</span>
             <span className="h-1.5 w-1.5 rounded-full bg-gold" />
           </a>
