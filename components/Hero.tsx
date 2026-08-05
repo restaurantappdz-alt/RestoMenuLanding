@@ -7,6 +7,7 @@ import {
   motion,
   useInView,
   useMotionValue,
+  useReducedMotion,
   useSpring,
   useTransform,
   type Variants,
@@ -14,6 +15,7 @@ import {
 import Image from "next/image";
 import { HiOutlineArrowRight, HiOutlinePlay } from "react-icons/hi";
 import Magnetic from "@/components/Magnetic";
+import PhoneFrame from "@/components/PhoneFrame";
 import { SPRING_SOFT } from "@/components/motion";
 import { pub } from "@/lib/basePath";
 
@@ -50,6 +52,9 @@ export default function Hero() {
   // Arabic renders as one block (letters must stay joined — no per-letter split).
   const isArabic = locale === "ar";
 
+  // Respect prefers-reduced-motion: no float loops, no mouse tilt.
+  const reduceMotion = useReducedMotion();
+
   // Minimal mouse tilt (±2°) over the mockups — subtle, non-distracting.
   const mockupRef = useRef<HTMLDivElement>(null);
   const mouseX = useMotionValue(0);
@@ -66,9 +71,9 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-screen items-center overflow-hidden pt-16"
+      className="relative flex min-h-screen min-h-[100svh] items-center overflow-hidden pt-16"
     >
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-14 px-5 py-20 sm:px-8 lg:grid-cols-2 lg:gap-6">
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-10 px-5 py-12 sm:gap-14 sm:py-20 sm:px-8 lg:grid-cols-2 lg:gap-6">
         {/* ---------- Copy ---------- */}
         <div className="text-center lg:text-start">
           {isArabic ? (
@@ -133,13 +138,13 @@ export default function Hero() {
                 whileTap={{ scale: 0.97 }}
                 transition={{ type: "spring", stiffness: 300, damping: 18 }}
                 href="#contact"
-                className="btn-gold"
+                className="btn-gold min-h-12"
               >
                 {t("getApp")} <HiOutlineArrowRight size={18} />
               </motion.a>
             </Magnetic>
             <Magnetic>
-              <a href="#solution" className="btn-ghost">
+              <a href="#solution" className="btn-ghost min-h-12">
                 <HiOutlinePlay size={16} /> {t("watchDemo")}
               </a>
             </Magnetic>
@@ -153,13 +158,13 @@ export default function Hero() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ type: "spring", stiffness: 90, damping: 18, delay: 0.35 }}
           style={{ perspective: 900, rotateX, rotateY }}
-          onMouseMove={(e) => {
+          onMouseMove={reduceMotion ? undefined : (e) => {
             const rect = mockupRef.current?.getBoundingClientRect();
             if (!rect) return;
             mouseX.set((e.clientX - rect.left) / rect.width - 0.5);
             mouseY.set((e.clientY - rect.top) / rect.height - 0.5);
           }}
-          onMouseLeave={() => {
+          onMouseLeave={reduceMotion ? undefined : () => {
             mouseX.set(0);
             mouseY.set(0);
           }}
@@ -167,7 +172,7 @@ export default function Hero() {
         >
           {/* Phone — cycling screenshots */}
           <motion.div
-            animate={{ y: [0, -6, 0] }}
+            animate={reduceMotion ? { y: 0 } : { y: [0, -6, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
             className="lg:absolute lg:start-0 lg:top-2"
           >
@@ -175,7 +180,7 @@ export default function Hero() {
           </motion.div>
           {/* TV — live menu screenshot */}
           <motion.div
-            animate={{ y: [0, -6, 0] }}
+            animate={reduceMotion ? { y: 0 } : { y: [0, -6, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
             className="lg:absolute lg:end-0 lg:top-20"
           >
@@ -203,55 +208,50 @@ function PhoneMockup() {
   }, [inView]);
 
   return (
-    <motion.div
-      ref={ref}
-      animate={{
-        boxShadow: [
-          "0 0 0px rgba(245,176,65,0)",
-          "0 0 28px rgba(245,176,65,0.3)",
-          "0 0 0px rgba(245,176,65,0)",
-        ],
-      }}
-      transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut" }}
-      className="glass w-56 rounded-[2rem] border-gold/40 p-3"
-    >
-      <div className="relative aspect-[9/16] overflow-hidden rounded-[1.6rem] bg-[#0d0f15]">
-        <AnimatePresence>
-          <motion.div
-            key={index}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.55, ease: "easeInOut" }}
-            className="absolute inset-0"
-          >
-            <Image
-              src={PHONE_IMAGES[index]}
-              alt={`${t("phoneLabel")} — Demo`}
-              width={270}
-              height={480}
-              className="h-full w-full object-cover"
-            />
-          </motion.div>
-        </AnimatePresence>
-        <span className="absolute end-2 top-2 rounded-full bg-gold px-2 py-0.5 text-[9px] font-bold text-gold-ink">
-          {t("live")}
-        </span>
-      </div>
-      {/* Carousel dots */}
-      <div className="flex justify-center gap-1 pt-3">
-        {PHONE_IMAGES.map((_, i) => (
-          <span
-            key={i}
-            className={
-              i === index
-                ? "h-1.5 w-4 rounded-full bg-gold transition-all duration-300"
-                : "h-1.5 w-1.5 rounded-full bg-line"
-            }
-          />
-        ))}
-      </div>
-    </motion.div>
+    <div ref={ref}>
+      <PhoneFrame className="w-56">
+        {/* Screenshot crossfade — real images from public/screenshots/phone/ */}
+        <div className="absolute inset-0">
+          <AnimatePresence>
+            <motion.div
+              key={index}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.55, ease: "easeInOut" }}
+              className="absolute inset-0"
+            >
+              <Image
+                src={PHONE_IMAGES[index]}
+                alt={`${t("phoneLabel")} — Demo`}
+                width={270}
+                height={480}
+                className="h-full w-full object-cover"
+              />
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Gold LIVE badge */}
+          <span className="absolute end-2 top-2 rounded-full bg-gold px-2 py-0.5 text-[9px] font-bold text-gold-ink">
+            {t("live")}
+          </span>
+
+          {/* Carousel dots — overlaid at the screen bottom over a soft scrim */}
+          <div className="absolute inset-x-0 bottom-2 z-10 flex justify-center gap-1.5 bg-gradient-to-t from-black/60 to-transparent pb-2 pt-8">
+            {PHONE_IMAGES.map((_, i) => (
+              <span
+                key={i}
+                className={
+                  i === index
+                    ? "h-1.5 w-4 rounded-full bg-gold transition-all duration-300"
+                    : "h-1.5 w-1.5 rounded-full bg-line"
+                }
+              />
+            ))}
+          </div>
+        </div>
+      </PhoneFrame>
+    </div>
   );
 }
 

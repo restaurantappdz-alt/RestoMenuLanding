@@ -2,17 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
-import {
-  AnimatePresence,
-  motion,
-  useInView,
-  useMotionValue,
-  useSpring,
-  useTransform,
-} from "framer-motion";
+import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import { HiOutlineArrowRight } from "react-icons/hi";
 import SectionHeading from "@/components/SectionHeading";
+import PhoneFrame from "@/components/PhoneFrame";
 import { SPRING_SOFT } from "@/components/motion";
 import { pub } from "@/lib/basePath";
 
@@ -30,9 +24,10 @@ const FLOW_ARROWS = [0, 0.18, 0.36];
 
 export default function Solution() {
   const t = useTranslations("solution");
+  const reduceMotion = useReducedMotion();
 
   return (
-    <section id="solution" className="relative flex min-h-[80vh] items-center py-20 lg:min-h-screen">
+    <section id="solution" className="relative flex min-h-[80vh] items-center py-14 sm:py-20 lg:min-h-screen">
       <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
         <SectionHeading
           eyebrow={t("eyebrow")}
@@ -70,7 +65,7 @@ export default function Solution() {
                 className="grid h-10 w-10 place-items-center rounded-xl border border-gold/30 bg-gold/10 rotate-90 lg:rotate-0 rtl:lg:rotate-180"
               >
                 <motion.span
-                  animate={{ x: [0, 10, 0], opacity: [0.3, 1, 0.3] }}
+                  animate={reduceMotion ? { x: 0, opacity: 0.7 } : { x: [0, 10, 0], opacity: [0.3, 1, 0.3] }}
                   transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut", delay }}
                 >
                   <HiOutlineArrowRight size={18} className="text-gold" />
@@ -107,8 +102,8 @@ export default function Solution() {
 }
 
 /* ----------------------------------------------------------------------------
- * PhoneCarousel — crossfades one screenshot every 2.5s while in view, inside a
- * phone frame with mouse-driven 3D tilt (±5°) and a pulsing gold edge glow.
+ * PhoneCarousel — crossfades one screenshot every 2.5s while in view, inside
+ * the shared PhoneFrame (machined-metal shell: cursor tilt, glare, gold glow).
  * -------------------------------------------------------------------------- */
 
 // Real screenshots served from public/screenshots/phone/ (3 images).
@@ -140,84 +135,50 @@ function PhoneCarousel() {
     return () => clearInterval(id);
   }, [inView]);
 
-  // Subtle 3D tilt from mouse position over the frame (±5°).
-  const mx = useMotionValue(0.5);
-  const my = useMotionValue(0.5);
-  const rotateY = useSpring(useTransform(mx, [0, 1], [5, -5]), { stiffness: 120, damping: 18 });
-  const rotateX = useSpring(useTransform(my, [0, 1], [4, -4]), { stiffness: 120, damping: 18 });
-
-  const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const r = e.currentTarget.getBoundingClientRect();
-    mx.set((e.clientX - r.left) / r.width);
-    my.set((e.clientY - r.top) / r.height);
-  };
-
   return (
-    <div ref={ref} onMouseMove={onMouseMove} className="rounded-[2.8rem] p-3" style={{ perspective: 900 }}>
-      {/* Frame — glowing gold edge */}
-      <motion.div
-        animate={{
-          boxShadow: [
-            "0 0 18px rgba(245,176,65,0.12)",
-            "0 0 34px rgba(245,176,65,0.28)",
-            "0 0 18px rgba(245,176,65,0.12)",
-          ],
-        }}
-        transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
-        className="glass rounded-[2.5rem] border-gold/30"
-        style={{ rotateX, rotateY }}
-      >
-        <div className="rounded-[2.4rem] p-2.5">
-          <div className="relative overflow-hidden rounded-[2rem] bg-[#0d0f15]">
-            {/* Notch */}
-            <div className="flex justify-center pt-2.5">
-              <div className="h-4.5 w-24 rounded-full bg-[#0d0f15] ring-1 ring-white/10" />
-            </div>
+    <div ref={ref}>
+      <PhoneFrame className="w-full">
+        {/* Screenshot crossfade + caption — real images from public/screenshots/phone/ */}
+        <div className="absolute inset-0">
+          <AnimatePresence>
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.92 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 1.05 }}
+              transition={{ duration: 0.45, ease: "easeOut" }}
+              className="absolute inset-0"
+            >
+              <Image
+                src={SCREEN_SRCS[index]}
+                alt={screens[index].title}
+                fill
+                sizes="(max-width: 640px) 176px, 208px"
+                className="object-cover"
+              />
+              {/* Caption — title + caption from solution.screens */}
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent px-4 pb-10 pt-8">
+                <p className="text-xs font-bold text-white">{screens[index].title}</p>
+                <p className="text-[10px] text-gray-300">{screens[index].caption}</p>
+              </div>
+            </motion.div>
+          </AnimatePresence>
 
-            {/* Screenshot crossfade zone */}
-            <div className="relative h-72 sm:h-80">
-              <AnimatePresence>
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.92 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 1.05 }}
-                  transition={{ duration: 0.45, ease: "easeOut" }}
-                  className="absolute inset-0"
-                >
-                  {/* Real screenshot from public/screenshots/phone/ */}
-                  <Image
-                    src={SCREEN_SRCS[index]}
-                    alt={screens[index].title}
-                    fill
-                    sizes="(max-width: 640px) 176px, 208px"
-                    className="object-cover"
-                  />
-                  {/* Caption */}
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent px-4 pb-2.5 pt-8">
-                    <p className="text-[11px] font-bold text-white">{screens[index].title}</p>
-                    <p className="text-[9px] text-gray-300">{screens[index].caption}</p>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-
-            {/* Carousel dots */}
-            <div className="flex justify-center gap-1.5 pb-5">
-              {SCREEN_SRCS.map((_, i) => (
-                <span
-                  key={i}
-                  className={
-                    i === index
-                      ? "h-1.5 w-4 rounded-full bg-gold transition-all duration-300"
-                      : "h-1.5 w-1.5 rounded-full bg-white/20"
-                  }
-                />
-              ))}
-            </div>
+          {/* Carousel dots */}
+          <div className="absolute inset-x-0 bottom-3 z-10 flex justify-center gap-1.5">
+            {SCREEN_SRCS.map((_, i) => (
+              <span
+                key={i}
+                className={
+                  i === index
+                    ? "h-1.5 w-4 rounded-full bg-gold transition-all duration-300"
+                    : "h-1.5 w-1.5 rounded-full bg-white/20"
+                }
+              />
+            ))}
           </div>
         </div>
-      </motion.div>
+      </PhoneFrame>
     </div>
   );
 }
@@ -283,7 +244,7 @@ function TvMenu() {
             {/* TV header overlay */}
             <div className="absolute inset-x-0 top-0 flex items-center justify-between bg-gradient-to-b from-black/60 to-transparent px-4 pb-6 pt-2.5">
               <span className="text-xs font-bold text-white">{t("tvLabel")}</span>
-              <span className="flex items-center gap-1.5 rounded-full bg-emerald-500/20 px-2 py-0.5 text-[9px] font-bold text-emerald-300">
+              <span className="flex items-center gap-1.5 rounded-full bg-emerald-500/20 px-2 py-0.5 text-[10px] font-bold text-emerald-300">
                 <span className="relative flex h-1.5 w-1.5">
                   <span className="absolute h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
                   <span className="relative h-1.5 w-1.5 rounded-full bg-emerald-400" />
