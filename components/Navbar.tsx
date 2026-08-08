@@ -5,15 +5,14 @@ import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
 import Magnetic from "@/components/Magnetic";
-import ThemeToggle from "@/components/ThemeToggle";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import MobileMenu from "@/components/MobileMenu";
 
 /**
  * Sticky glass navbar — keeps a higher z-index than the mobile drawer so it
- * stays visible above the overlay. Desktop: section links, theme toggle,
- * language switcher and "Contact". Mobile: logo, theme toggle + hamburger
- * opening a spring-animated full-screen drawer (MobileMenu).
+ * stays visible above the overlay. Desktop: section links, language switcher
+ * and "Contact". Mobile: logo, language switcher + hamburger opening a
+ * spring-animated full-screen drawer (MobileMenu).
  */
 export default function Navbar() {
   const t = useTranslations("nav");
@@ -61,8 +60,7 @@ export default function Navbar() {
 
           {/* Desktop controls */}
           <div className="hidden items-center gap-3 md:flex">
-            <ThemeToggle />
-            <LanguageSwitcher />
+            <LanguageSwitcher variant="toggle" />
             <Magnetic>
               <a href="#contact" className="btn-ghost !px-4 !py-2 text-sm sm:!px-6">
                 {t("join")}
@@ -70,9 +68,9 @@ export default function Navbar() {
             </Magnetic>
           </div>
 
-          {/* Mobile controls */}
+          {/* Mobile controls — language picker stays visible in the bar */}
           <div className="flex items-center gap-3 md:hidden">
-            <ThemeToggle />
+            <LanguageSwitcher compact />
             <button
               type="button"
               aria-label={menuOpen ? "Close menu" : "Open menu"}
