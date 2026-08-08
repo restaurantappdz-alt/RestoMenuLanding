@@ -3,15 +3,17 @@
 import { ThemeProvider } from "next-themes";
 
 /**
- * Global providers (client-only). next-themes toggles the `dark` class on
- * <html>, so all theme styles come from Tailwind's `dark:` variants and the
- * CSS variables in globals.css. Dark is the default theme.
+ * Global providers (client-only). The site is FORCED to light mode via
+ * `forcedTheme` — next-themes always applies the light theme and ignores any
+ * saved device preference or localStorage value, so every phone/PC sees the
+ * same light site. The `.dark` block in globals.css never activates.
  */
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (
     <ThemeProvider
       attribute="class"
-      defaultTheme="dark"
+      defaultTheme="light"
+      forcedTheme="light"
       enableSystem={false}
       disableTransitionOnChange
     >
