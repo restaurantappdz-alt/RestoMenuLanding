@@ -20,18 +20,20 @@ and `next-themes` (dark/light).
 │   ├── fr.json              # French
 │   └── ar.json              # Arabic (RTL)
 ├── app/
-│   ├── globals.css          # Theme tokens (CSS vars) + .glass/.btn-gold/.btn-ghost
+│   ├── (root)/                # Bare "/" (no locale): client-side redirect to the
+│   │   │                      #   detected locale (static export has no middleware)
+│   │   ├── globals.css        # Theme tokens (CSS vars) + .glass/.btn-gold/.btn-ghost
 │   ├── favicon.ico
 │   └── [locale]/
 │       ├── layout.tsx       # <html lang/dir>, Outfit font, NextIntlClientProvider,
 │       │                    #   ThemeProvider, per-locale metadata, generateStaticParams
 │       └── page.tsx         # Server component assembling all sections
 ├── components/
-│   ├── Providers.tsx        # next-themes provider (class strategy, dark default)
+│   ├── Providers.tsx        # next-themes provider (class strategy, forced light)
 │   ├── Navbar.tsx           # Sticky glass nav (desktop section links + hamburger)
 │   ├── MobileMenu.tsx       # Spring slide-in drawer (mirrored in RTL)
-│   ├── LanguageSwitcher.tsx # Locale dropdown (flags + native names)
-│   ├── ThemeToggle.tsx      # Sun/moon toggle
+│   ├── LanguageSwitcher.tsx # Locale control: dropdown (mobile/footer) + inline
+│   │                        #   EN/FR/AR toggle (desktop navbar); flags + native names
 │   ├── Hero.tsx             # Staggered headline, CTAs, tilting phone/TV mockups
 │   ├── Problem.tsx          # Two-column comparison
 │   ├── Solution.tsx         # Phone screenshot carousel → arrows → TV menu
@@ -40,7 +42,7 @@ and `next-themes` (dark/light).
 │   ├── HowItWorks.tsx       # 3 numbered steps
 │   ├── Pricing.tsx          # Starter / Pro / Premium
 │   ├── Contact.tsx          # Contact info card + message form
-│   ├── Footer.tsx           # Links, language switcher, theme toggle
+│   ├── Footer.tsx           # Links + language switcher
 │   ├── FloatingIcons.tsx     # Real icon PNGs floating in the background
 │   ├── SectionHeading.tsx / SectionDivider.tsx
 │   ├── Magnetic.tsx         # Cursor-magnetic wrapper for CTAs
@@ -58,8 +60,14 @@ and `next-themes` (dark/light).
 - **Locales**: `en`, `fr`, `ar` (defined in `i18n.ts`, used by middleware,
   `navigation.ts` and `generateStaticParams`).
 - **URL scheme**: locale is always a path prefix (`localePrefix: "always"` in
-  `middleware.ts`). `/` redirects to `/en`; `/ar` etc. are statically
-  prerendered per locale.
+  `middleware.ts`). `/` redirects to the best match — but note static export
+  disables middleware, so the bare `/` page (`app/(root)/page.tsx`)
+  client-side redirects instead: remembered `NEXT_LOCALE` cookie → phone/browser
+  language (`navigator.languages`) → **Arabic fallback**. `/en`/`/fr`/`/ar`
+  are statically prerendered per locale.
+- **Default fallback is Arabic** (`defaultLocale: "ar"` in `i18n.ts` +
+  `middleware.ts`): when the device language isn't en/fr/ar, visitors land on
+  Arabic (in dev, where middleware still runs, this is handled server-side).
 - **RTL**: `app/[locale]/layout.tsx` sets `dir={locale === "ar" ? "rtl" : "ltr"}`
   on `<html>`. Layouts mirror automatically; where an explicit flip is needed,
   components use Tailwind `rtl:` variants (e.g. arrows `rtl:lg:rotate-180`,
@@ -70,9 +78,13 @@ and `next-themes` (dark/light).
 - **How the switcher works**: `LanguageSwitcher` uses `useRouter` +
   `usePathname` from `next-intl/navigation` (`navigation.ts`), so switching
   keeps the current page and only swaps the locale prefix
-  (`router.replace(pathname, { locale })`). The active locale comes from
-  `useLocale()`; the dropdown is `AnimatePresence`-animated with flags 🇬🇧/🇫🇷/🇸🇦
-  and native names (English / Français / العربية).
+  (`router.replace(pathname, { locale })`) — this also writes the `NEXT_LOCALE`
+  cookie client-side (used by the `/` redirect on return visits). Two variants:
+  - `dropdown` (default, used in the footer and mobile navbar): globe button +
+    flag + native name, `AnimatePresence`-animated menu.
+  - `toggle` (desktop navbar, `md+`): inline segmented EN/FR/AR pills, active
+    one gold-highlighted, each with `aria-label`/`title` = native name.
+  The active locale comes from `useLocale()`; Arabic renders RTL automatically.
 - **Translating a component**: `const t = useTranslations("section")` then
   `t("key")`; arrays are read with `t.raw("key")` (hero words, feature items,
   pricing plans, solution categories…).
@@ -153,16 +165,18 @@ and `next-themes` (dark/light).
   3 columns (`md:`). Templates/HowItWorks: stacked → side-by-side.
 - Navbar: always glass (`glass border-x-0 border-t-0`, `z-[60]`) — solid
   white + border in light mode, translucent glass in dark. Desktop shows
-  section links (Problem → Contact, from `lg:`) + theme toggle, language
-  switcher and a Contact CTA. Below `lg` a hamburger (`HiOutlineMenu`)
+  section links (Problem → Contact, from `lg:`) + theme toggle, the language
+  toggle and a Contact CTA. Below `lg` a hamburger (`HiOutlineMenu`)
   opens `MobileMenu`, a **full-screen drawer** (`inset-0`, `z-50`) that slides
   from the inline-end (mirrored in RTL) with `SPRING_SOFT`. The backdrop
   (`z-40`) dims the page; the navbar keeps a higher z-index (`z-[60]`) and
   stays visible **above** the overlay (this fixes the old drawer-on-top-of-
-  navbar bug). Drawer holds a close (X) button, section links, language
-  switcher (active language golds itself), a duplicated theme toggle and the
-  Contact CTA; body scroll is locked while open. Anchored sections sit clear
-  of the fixed navbar via `scroll-padding-top`.
+  navbar bug). Drawer holds a close (X) button, section links, a duplicated
+  theme toggle and the Contact CTA; body scroll is locked while open. Anchored
+  sections sit clear of the fixed navbar via `scroll-padding-top`.
+  The language picker is **always visible in the bar on every screen size**
+  (compact dropdown on mobile beside the theme toggle, inline toggle from
+  `md+`); it was removed from the drawer as redundant.
 - Contact form is the last section (after Pricing); all CTAs scroll to
   `#contact`.
 - All buttons/links have ≥44px touch targets (hamburger + theme toggle are
