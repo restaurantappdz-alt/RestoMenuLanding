@@ -5,8 +5,6 @@ import { useLocale, useTranslations } from "next-intl";
 import { AnimatePresence, motion } from "framer-motion";
 import { HiOutlineArrowRight, HiOutlineX } from "react-icons/hi";
 import { SPRING_SOFT } from "@/components/motion";
-import LanguageSwitcher from "@/components/LanguageSwitcher";
-import ThemeToggle from "@/components/ThemeToggle";
 
 /**
  * Mobile drawer — full-screen overlay that slides in from the inline-end
@@ -106,12 +104,8 @@ export default function MobileMenu({
                 ))}
               </nav>
 
-              {/* Bottom: language + theme + CTA */}
+              {/* Bottom: CTA (language picker lives in the navbar bar itself) */}
               <div className="mt-auto flex flex-col gap-4 pt-8">
-                <div className="flex items-center justify-between gap-4">
-                  <LanguageSwitcher />
-                  <ThemeToggle />
-                </div>
                 <a href="#contact" onClick={onClose} className="btn-gold w-full">
                   {t("nav.join")}
                 </a>

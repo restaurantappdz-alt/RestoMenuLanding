@@ -12,14 +12,19 @@ const FLAGS: Record<Locale, string> = { en: "🇬🇧", fr: "🇫🇷", ar: "�
 const NATIVE: Record<Locale, string> = { en: "English", fr: "Français", ar: "العربية" };
 
 /**
- * Locale dropdown. Uses next-intl navigation so switching keeps the current
- * path and only swaps the locale prefix (/en → /fr → /ar). Arabic renders
- * RTL automatically via the <html dir> set in the layout.
+ * Locale switcher with two variants:
+ * - "dropdown" (default): compact globe + active language, opens an animated menu.
+ * - "toggle": inline segmented control (EN / FR / AR) for headers with room.
+ * Uses next-intl navigation so switching keeps the current path and only swaps
+ * the locale prefix (/en → /fr → /ar). Arabic renders RTL automatically via
+ * the <html dir> set in the layout.
  */
 export default function LanguageSwitcher({
+  variant = "dropdown",
   compact = false,
   align = "end",
 }: {
+  variant?: "dropdown" | "toggle";
   compact?: boolean;
   align?: "start" | "end";
 }) {
@@ -32,6 +37,32 @@ export default function LanguageSwitcher({
     router.replace(pathname, { locale: next });
     setOpen(false);
   };
+
+  if (variant === "toggle") {
+    return (
+      <div
+        role="group"
+        aria-label="Change language"
+        className="glass flex items-center gap-0.5 rounded-full p-1"
+      >
+        {locales.map((l) => (
+          <button
+            key={l}
+            type="button"
+            onClick={() => switchTo(l)}
+            aria-label={`Switch to ${NATIVE[l]}`}
+            aria-current={l === locale ? "true" : undefined}
+            title={NATIVE[l]}
+            className={`grid h-9 min-w-11 place-items-center rounded-full px-3 text-xs font-bold transition-colors duration-200 ${
+              l === locale ? "bg-gold/15 text-gold" : "text-body hover:text-gold"
+            }`}
+          >
+            {l.toUpperCase()}
+          </button>
+        ))}
+      </div>
+    );
+  }
 
   return (
     <div className="relative">
