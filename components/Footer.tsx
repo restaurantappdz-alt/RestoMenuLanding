@@ -2,8 +2,9 @@
 
 import { useTranslations } from "next-intl";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import ThemeToggle from "@/components/ThemeToggle";
 
-/** Footer — tagline, Privacy/Terms links, language switcher. */
+/** Footer — tagline, Privacy/Terms links, language + theme switchers. */
 export default function Footer() {
   const t = useTranslations("footer");
 
@@ -29,9 +30,10 @@ export default function Footer() {
           </a>
         </nav>
 
-        {/* Language */}
+        {/* Language + theme */}
         <div className="flex items-center gap-3">
           <LanguageSwitcher />
+          <ThemeToggle />
         </div>
       </div>
 

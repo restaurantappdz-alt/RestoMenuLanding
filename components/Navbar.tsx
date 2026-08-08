@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
 import Magnetic from "@/components/Magnetic";
+import ThemeToggle from "@/components/ThemeToggle";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import MobileMenu from "@/components/MobileMenu";
 
@@ -61,6 +62,7 @@ export default function Navbar() {
           {/* Desktop controls */}
           <div className="hidden items-center gap-3 md:flex">
             <LanguageSwitcher variant="toggle" />
+            <ThemeToggle />
             <Magnetic>
               <a href="#contact" className="btn-ghost !px-4 !py-2 text-sm sm:!px-6">
                 {t("join")}
@@ -71,6 +73,7 @@ export default function Navbar() {
           {/* Mobile controls — language picker stays visible in the bar */}
           <div className="flex items-center gap-3 md:hidden">
             <LanguageSwitcher compact />
+            <ThemeToggle />
             <button
               type="button"
               aria-label={menuOpen ? "Close menu" : "Open menu"}
