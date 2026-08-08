@@ -36,11 +36,12 @@ const PHONE_IMAGES = [
   pub("/screenshots/phone/phone-3.jpg"),
 ];
 
-// Real TV screenshots served from public/screenshots/tv/ (3 images).
+// Real TV screenshots served from public/screenshots/tv/ (4 images).
 const TV_IMAGES = [
   pub("/screenshots/tv/tv-1.png"),
   pub("/screenshots/tv/tv-2.png"),
   pub("/screenshots/tv/tv-3.png"),
+  pub("/screenshots/tv/tv-4.jpg"),
 ];
 
 /** Hero — staggered headline, CTAs, floating phone + TV mockups (±2° tilt). */
