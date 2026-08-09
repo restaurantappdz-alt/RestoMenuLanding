@@ -8,7 +8,14 @@
     "menu": "Menu"
   },
   "hero": {
-    "words": ["Votre", "menu,", "toujours", "frais.", "Toujours", "en direct."],
+    "words": [
+      "Votre",
+      "menu,",
+      "toujours",
+      "frais.",
+      "Toujours",
+      "en direct."
+    ],
     "subtitle": "Fini de perdre du temps et de l'argent avec des menus statiques. Modifiez vos plats depuis votre téléphone et regardez-les apparaître sur chaque TV — instantanément.",
     "getApp": "Télécharger l'app",
     "watchDemo": "Voir la démo",
@@ -44,9 +51,18 @@
     "title": "Pilotez depuis votre téléphone,",
     "titleAccent": "et regardez-le apparaître à l'écran",
     "screens": [
-      { "title": "Éditeur de menu", "caption": "Renommez, réordonnez et fixez le prix de chaque plat." },
-      { "title": "Mise à jour de prix", "caption": "Plat du Jour 1 200 DA — en direct sur la TV." },
-      { "title": "Spécial du jour", "caption": "SPÉCIAL DU JOUR — Tajine de poulet." }
+      {
+        "title": "Éditeur de menu",
+        "caption": "Renommez, réordonnez et fixez le prix de chaque plat."
+      },
+      {
+        "title": "Mise à jour de prix",
+        "caption": "Plat du Jour 1 200 DA — en direct sur la TV."
+      },
+      {
+        "title": "Spécial du jour",
+        "caption": "SPÉCIAL DU JOUR — Tajine de poulet."
+      }
     ],
     "tvLabel": "TV 1 · Comptoir",
     "synced": "SYNCÉ",
@@ -56,12 +72,30 @@
     "eyebrow": "Fonctionnalités",
     "title": "Tout ce qu'il vous faut",
     "items": [
-      { "title": "Mises à jour instantanées", "body": "Changement de prix ? Spécial du jour ? Des secondes, pas des heures." },
-      { "title": "Multi-écrans", "body": "Des menus différents pour le comptoir, la terrasse, le salon." },
-      { "title": "Des modèles variés", "body": "Du Classic Gold au Moroccan Teal." },
-      { "title": "Multilingue", "body": "Anglais, français, arabe + dinar." },
-      { "title": "Extras", "body": "Ajoutez des suppléments comme des frites à n'importe quel plat." },
-      { "title": "Zéro installation", "body": "Pas de serveur, pas de câbles. Juste un lien." }
+      {
+        "title": "Mises à jour instantanées",
+        "body": "Changement de prix ? Spécial du jour ? Des secondes, pas des heures."
+      },
+      {
+        "title": "Multi-écrans",
+        "body": "Des menus différents pour le comptoir, la terrasse, le salon."
+      },
+      {
+        "title": "Des modèles variés",
+        "body": "Du Classic Gold au Moroccan Teal."
+      },
+      {
+        "title": "Multilingue",
+        "body": "Anglais, français, arabe + dinar."
+      },
+      {
+        "title": "Extras",
+        "body": "Ajoutez des suppléments comme des frites à n'importe quel plat."
+      },
+      {
+        "title": "Zéro installation",
+        "body": "Pas de serveur, pas de câbles. Juste un lien."
+      }
     ]
   },
   "templates": {
@@ -71,7 +105,11 @@
     "builtin": {
       "title": "Modèles intégrés",
       "note": "De nombreux modèles sont disponibles dans l'app.",
-      "names": ["Classic Gold", "Moroccan", "Pro Premium"]
+      "names": [
+        "Classic Gold",
+        "Moroccan",
+        "Pro Premium"
+      ]
     },
     "custom": {
       "title": "Design sur mesure",
@@ -83,9 +121,18 @@
     "eyebrow": "Comment ça marche",
     "title": "On a fait le plus dur. Vous, vous cuisinez.",
     "steps": [
-      { "title": "Créez votre menu", "body": "Composez-le une fois dans l'app. Prix, photos, extras." },
-      { "title": "Ajoutez un écran TV", "body": "Choisissez l'écran, choisissez le modèle. Terminé." },
-      { "title": "Ouvrez le lien et lancez-vous", "body": "Votre menu apparaît sur chaque TV instantanément." }
+      {
+        "title": "Créez votre menu",
+        "body": "Composez-le une fois dans l'app. Prix, photos, extras."
+      },
+      {
+        "title": "Ajoutez un écran TV",
+        "body": "Choisissez l'écran, choisissez le modèle. Terminé."
+      },
+      {
+        "title": "Ouvrez le lien et lancez-vous",
+        "body": "Votre menu apparaît sur chaque TV instantanément."
+      }
     ]
   },
   "pricing": {
@@ -96,7 +143,12 @@
       "price": "0 DA",
       "period": "Essai gratuit de 7 jours",
       "cta": "Commencer l'essai gratuit",
-      "features": ["Un menu", "Modèles de base", "1 écran", "Aucune carte bancaire requise"]
+      "features": [
+        "Un menu",
+        "Modèles de base",
+        "1 écran",
+        "Aucune carte bancaire requise"
+      ]
     },
     "pro": {
       "name": "Pro",
@@ -104,7 +156,12 @@
       "period": "/mois",
       "cta": "Choisir Pro",
       "badge": "Recommandé",
-      "features": ["Menus illimités", "Modèles variés", "5 écrans", "Support prioritaire"]
+      "features": [
+        "Menus illimités",
+        "Modèles variés",
+        "5 écrans",
+        "Support prioritaire"
+      ]
     },
     "premium": {
       "name": "Premium",
@@ -126,8 +183,6 @@
     "info": {
       "email": "Email",
       "phone": "Téléphone",
-      "location": "Adresse",
-      "locationValue": "Alger, Algérie",
       "hours": "Horaires",
       "hoursValue": "Ouvert 7j/7, 9h – 21h"
     },

@@ -6,7 +6,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
   HiOutlineCheckCircle,
   HiOutlineClock,
-  HiOutlineLocationMarker,
   HiOutlineMail,
   HiOutlinePhone,
   HiOutlinePaperAirplane,
@@ -23,9 +22,8 @@ export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
 
   const info = [
-    { icon: HiOutlineMail, label: t("info.email"), value: "hello@restomenu.app", latin: true },
-    { icon: HiOutlinePhone, label: t("info.phone"), value: "+213 555 12 34 56", latin: true },
-    { icon: HiOutlineLocationMarker, label: t("info.location"), value: t("info.locationValue") },
+    { icon: HiOutlineMail, label: t("info.email"), value: "andalussmart.dz@gmail.com", latin: true },
+    { icon: HiOutlinePhone, label: t("info.phone"), value: "0553886108 / 0794726589", latin: true },
     { icon: HiOutlineClock, label: t("info.hours"), value: t("info.hoursValue") },
   ];
 

@@ -8,7 +8,14 @@
     "menu": "Menu"
   },
   "hero": {
-    "words": ["Your", "Menu,", "Always", "Fresh.", "Always", "Live."],
+    "words": [
+      "Your",
+      "Menu,",
+      "Always",
+      "Fresh.",
+      "Always",
+      "Live."
+    ],
     "subtitle": "Stop wasting time and money on static menu boards. Update your dishes from your phone and see them appear on every TV — instantly.",
     "getApp": "Get the App",
     "watchDemo": "Watch Demo",
@@ -44,9 +51,18 @@
     "title": "Control from Your Phone,",
     "titleAccent": "Watch It Appear on TV",
     "screens": [
-      { "title": "Menu Editor", "caption": "Rename, reorder & price every dish." },
-      { "title": "Price Update", "caption": "Plat du Jour 1,200 DA — live on TV." },
-      { "title": "Daily Special", "caption": "TODAY'S SPECIAL — Chicken Tagine." }
+      {
+        "title": "Menu Editor",
+        "caption": "Rename, reorder & price every dish."
+      },
+      {
+        "title": "Price Update",
+        "caption": "Plat du Jour 1,200 DA — live on TV."
+      },
+      {
+        "title": "Daily Special",
+        "caption": "TODAY'S SPECIAL — Chicken Tagine."
+      }
     ],
     "tvLabel": "TV 1 · Counter",
     "synced": "SYNCED",
@@ -56,12 +72,30 @@
     "eyebrow": "Features",
     "title": "Everything You Need",
     "items": [
-      { "title": "Instant Updates", "body": "Price changes? Daily special? Seconds, not hours." },
-      { "title": "Multi-Screen", "body": "Different menus for counter, terrace, salon." },
-      { "title": "Various Templates", "body": "From Classic Gold to Moroccan Teal." },
-      { "title": "Localized", "body": "English, French, Arabic + Dinar." },
-      { "title": "Add-ons", "body": "Attach extras like frites to any dish." },
-      { "title": "Zero Setup", "body": "No server, no cables. Just a link." }
+      {
+        "title": "Instant Updates",
+        "body": "Price changes? Daily special? Seconds, not hours."
+      },
+      {
+        "title": "Multi-Screen",
+        "body": "Different menus for counter, terrace, salon."
+      },
+      {
+        "title": "Various Templates",
+        "body": "From Classic Gold to Moroccan Teal."
+      },
+      {
+        "title": "Localized",
+        "body": "English, French, Arabic + Dinar."
+      },
+      {
+        "title": "Add-ons",
+        "body": "Attach extras like frites to any dish."
+      },
+      {
+        "title": "Zero Setup",
+        "body": "No server, no cables. Just a link."
+      }
     ]
   },
   "templates": {
@@ -71,7 +105,11 @@
     "builtin": {
       "title": "Built-In Templates",
       "note": "Various templates available in the app.",
-      "names": ["Classic Gold", "Moroccan", "Pro Premium"]
+      "names": [
+        "Classic Gold",
+        "Moroccan",
+        "Pro Premium"
+      ]
     },
     "custom": {
       "title": "Custom Design",
@@ -83,9 +121,18 @@
     "eyebrow": "How It Works",
     "title": "We Did the Hard Work. You Just Cook.",
     "steps": [
-      { "title": "Create your menu", "body": "Build it once in the app. Prices, photos, add-ons." },
-      { "title": "Add a TV screen", "body": "Pick the screen, pick the template. Done." },
-      { "title": "Open the link and go live", "body": "Your menu appears on every TV instantly." }
+      {
+        "title": "Create your menu",
+        "body": "Build it once in the app. Prices, photos, add-ons."
+      },
+      {
+        "title": "Add a TV screen",
+        "body": "Pick the screen, pick the template. Done."
+      },
+      {
+        "title": "Open the link and go live",
+        "body": "Your menu appears on every TV instantly."
+      }
     ]
   },
   "pricing": {
@@ -96,7 +143,12 @@
       "price": "0 DA",
       "period": "7-day free trial",
       "cta": "Start Free Trial",
-      "features": ["One menu", "Basic templates", "1 screen", "No credit card needed"]
+      "features": [
+        "One menu",
+        "Basic templates",
+        "1 screen",
+        "No credit card needed"
+      ]
     },
     "pro": {
       "name": "Pro",
@@ -104,7 +156,12 @@
       "period": "/month",
       "cta": "Get Pro",
       "badge": "Recommended",
-      "features": ["Unlimited menus", "Various templates", "5 screens", "Priority support"]
+      "features": [
+        "Unlimited menus",
+        "Various templates",
+        "5 screens",
+        "Priority support"
+      ]
     },
     "premium": {
       "name": "Premium",
@@ -126,8 +183,6 @@
     "info": {
       "email": "Email",
       "phone": "Phone",
-      "location": "Location",
-      "locationValue": "Algiers, Algeria",
       "hours": "Hours",
       "hoursValue": "Open daily, 9:00 – 21:00"
     },
