@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import { HiOutlineArrowRight } from "react-icons/hi";
 import SectionHeading from "@/components/SectionHeading";
@@ -121,19 +121,15 @@ function PhoneCarousel() {
   const t = useTranslations("solution");
   const screens = t.raw("screens") as { title: string; caption: string }[];
 
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true });
-
-  // Cycle index while the carousel is on screen (2.5s per screenshot).
+  // Cycle index every 2.5s — runs from mount (no intersection gating).
   const [index, setIndex] = useState(0);
   useEffect(() => {
-    if (!inView) return;
     const id = setInterval(() => setIndex((i) => (i + 1) % SCREEN_SRCS.length), 2500);
     return () => clearInterval(id);
-  }, [inView]);
+  }, []);
 
   return (
-    <div ref={ref}>
+    <div>
       <PhoneFrame className="w-full">
         {/* Screenshot crossfade + caption — real images from public/screenshots/phone/ */}
         <div className="absolute inset-0">
@@ -187,20 +183,16 @@ function PhoneCarousel() {
  * -------------------------------------------------------------------------- */
 function TvMenu() {
   const t = useTranslations("solution");
-
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-15%" });
   const [index, setIndex] = useState(0);
 
-  // Cycle every 2.5s while in view.
+  // Cycle every 2.5s — runs from mount (no intersection gating).
   useEffect(() => {
-    if (!inView) return;
     const id = setInterval(() => setIndex((i) => (i + 1) % TV_IMAGES.length), 2500);
     return () => clearInterval(id);
-  }, [inView]);
+  }, []);
 
   return (
-    <div ref={ref} className="rounded-2xl p-2.5" style={{ perspective: 900 }}>
+    <div className="rounded-2xl p-2.5" style={{ perspective: 900 }}>
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
@@ -211,7 +203,7 @@ function TvMenu() {
             repaint flicker when the screenshots swap). */}
         <motion.div
           aria-hidden
-          animate={inView ? { opacity: [0.2, 0.55, 0.2] } : { opacity: 0.25 }}
+          animate={{ opacity: [0.2, 0.55, 0.2] }}
           transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut" }}
           className="pointer-events-none absolute -inset-5 -z-10 rounded-[2rem] bg-gold/25 blur-3xl"
         />

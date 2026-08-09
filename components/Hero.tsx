@@ -5,7 +5,6 @@ import { useLocale, useTranslations } from "next-intl";
 import {
   AnimatePresence,
   motion,
-  useInView,
   useMotionValue,
   useReducedMotion,
   useSpring,
@@ -197,19 +196,16 @@ export default function Hero() {
    Replace files in public/screenshots/phone/ to swap the images. */
 function PhoneMockup() {
   const t = useTranslations("hero");
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true });
   const [index, setIndex] = useState(0);
 
-  // Cycle every 2.6s while the mockup is in view.
+  // Cycle every 2.6s — runs from mount (no intersection gating).
   useEffect(() => {
-    if (!inView) return;
     const id = setInterval(() => setIndex((i) => (i + 1) % PHONE_IMAGES.length), 2600);
     return () => clearInterval(id);
-  }, [inView]);
+  }, []);
 
   return (
-    <div ref={ref}>
+    <div>
       <PhoneFrame className="w-56">
         {/* Screenshot crossfade — real images from public/screenshots/phone/ */}
         <div className="absolute inset-0">
@@ -260,16 +256,13 @@ function PhoneMockup() {
    TV-style bezel with a brand strip, power LED and pedestal stand. */
 function TvMockup() {
   const t = useTranslations("hero");
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true });
   const [index, setIndex] = useState(0);
 
-  // Cycle every 2.6s while the mockup is in view.
+  // Cycle every 2.6s — runs from mount (no intersection gating).
   useEffect(() => {
-    if (!inView) return;
     const id = setInterval(() => setIndex((i) => (i + 1) % TV_IMAGES.length), 2600);
     return () => clearInterval(id);
-  }, [inView]);
+  }, []);
 
   return (
     <div className="relative isolate w-[300px] sm:w-[360px]">
@@ -283,10 +276,7 @@ function TvMockup() {
       />
 
       {/* Bezel */}
-      <div
-        ref={ref}
-        className="rounded-[1.4rem] bg-gradient-to-b from-[#2b3040] to-[#14171f] p-2.5 ring-1 ring-white/10"
-      >
+      <div className="rounded-[1.4rem] bg-gradient-to-b from-[#2b3040] to-[#14171f] p-2.5 ring-1 ring-white/10">
         <div className="relative aspect-video overflow-hidden rounded-xl bg-[#0d0f15]">
           <AnimatePresence>
             <motion.div
