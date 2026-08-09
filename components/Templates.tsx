@@ -23,8 +23,7 @@ export default function Templates() {
 
       <motion.p
         initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
+        animate={{ opacity: 1, y: 0 }}
         transition={SPRING_SOFT}
         className="mx-auto mb-12 max-w-2xl text-center leading-relaxed text-body"
       >

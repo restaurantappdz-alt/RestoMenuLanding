@@ -43,8 +43,7 @@ export default function Solution() {
           {/* ---- Phone: looping screenshots, 3D tilt, glowing edge ---- */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-20%" }}
+            animate={{ opacity: 1, y: 0 }}
             transition={SPRING_SOFT}
             className="w-44 shrink-0 sm:w-52"
           >
@@ -54,8 +53,7 @@ export default function Solution() {
           {/* ---- Marching arrows: continuous pulse toward the TV ---- */}
           <motion.div
             initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: "-20%" }}
+            animate={{ opacity: 1 }}
             transition={{ ...SPRING_SOFT, delay: 0.2 }}
             className="flex shrink-0 flex-row items-center gap-7 lg:flex-col lg:gap-9"
           >
@@ -77,8 +75,7 @@ export default function Solution() {
           {/* ---- TV: full menu screen, subtle glow ---- */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-20%" }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ ...SPRING_SOFT, delay: 0.15 }}
             className="w-full max-w-md shrink-0 lg:w-[440px]"
           >
@@ -89,8 +86,7 @@ export default function Solution() {
         {/* Cloud note — subtle, italic, quiet */}
         <motion.p
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, margin: "-40px" }}
+          animate={{ opacity: 1 }}
           transition={{ ...SPRING_SOFT, delay: 0.35 }}
           className="mx-auto mt-12 max-w-xl text-center text-sm italic text-faint"
         >
@@ -207,8 +203,7 @@ function TvMenu() {
     <div ref={ref} className="rounded-2xl p-2.5" style={{ perspective: 900 }}>
       <motion.div
         initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-20%" }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ ...SPRING_SOFT, delay: 0.15 }}
         className="relative isolate"
       >

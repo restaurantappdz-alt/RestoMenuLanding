@@ -50,8 +50,7 @@ export default function Contact() {
 
       <motion.p
         initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
+        animate={{ opacity: 1, y: 0 }}
         transition={SPRING_SOFT}
         className="mx-auto mb-12 max-w-2xl text-center leading-relaxed text-body"
       >
@@ -60,8 +59,7 @@ export default function Contact() {
 
       <motion.div
         initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: "-100px" }}
+        animate="show"
         variants={{ hidden: {}, show: { transition: { staggerChildren: 0.12 } } }}
         className="grid gap-6 lg:grid-cols-5"
       >

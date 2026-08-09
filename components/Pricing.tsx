@@ -31,8 +31,7 @@ export default function Pricing() {
 
       <motion.div
         initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: "-100px" }}
+        animate="show"
         variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }}
         className="grid items-stretch gap-6 md:grid-cols-3"
       >

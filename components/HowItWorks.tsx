@@ -24,8 +24,7 @@ export default function HowItWorks() {
 
       <motion.div
         initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: "-100px" }}
+        animate="show"
         variants={{ hidden: {}, show: { transition: { staggerChildren: 0.12 } } }}
         className="grid gap-6 md:grid-cols-3"
       >
