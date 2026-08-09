@@ -42,7 +42,13 @@ export is **root-relative**: `output: 'export'` and **no `basePath`** (see §2).
 - Added dev dependency: `gh-pages` (`^6.3.0`).
 - Added scripts:
   - `"predeploy": "npm run build && node -e \"require('fs').writeFileSync('out/.nojekyll', '')\""`
-  - `"deploy": "gh-pages -d out -b gh-pages"`
+  - `"deploy": "gh-pages -d out -b gh-pages -t --cname restova.andalussmart.com"`
+  - `-t` (dotfiles): **required** — without it `gh-pages` ignores dotfiles and
+    **strips the freshly generated `.nojekyll`** on push, which re-enables
+    Jekyll and breaks all `_next/` assets (the unstyled-HTML bug).
+  - `--cname restova.andalussmart.com`: keeps the `CNAME` file at the root
+    of `gh-pages` on **every** deploy. Without it, each deploy deletes the
+    `CNAME` GitHub created for the custom domain.
 - **Do NOT set a `homepage` field** (see §5).
 
 ### The `.nojekyll` file
@@ -113,9 +119,11 @@ SSL/TLS settings in Cloudflare:
 
 | Symptom | Cause / Fix |
 | --- | --- |
+| **Unstyled HTML — `_next/` CSS/JS 404** | Jekyll is running over the branch (missing `.nojekyll`). Ensure `.nojekyll` exists at the `gh-pages` branch root and that the deploy script keeps the `-t` flag — `gh-pages` strips dotfiles otherwise. |
 | 404 on assets/styles | A `homepage` field in `package.json` prefixes asset URLs and breaks root-relative exports. **Remove the `homepage` field.** |
 | `ERR_TOO_MANY_REDIRECTS` | Cloudflare SSL/TLS mode is `Flexible`. Set it to **Full** or **Full (Strict)**. |
-| Missing/CSS-less layout or `_next` folder 404s | Jekyll is running over the branch. Ensure **`.nojekyll`** exists in the `gh-pages` branch root (`npm run deploy` creates it automatically). |
+| Custom domain stops working after a deploy | The `CNAME` file got deleted by `gh-pages`. Keep `--cname restova.andalussmart.com` in the deploy script (it writes the file back on every deploy). |
+| Extra files (`.gitignore`, `.eslintrc.json`, `public/`) in the `gh-pages` branch | Known `gh-pages` behavior — it restores tracked repo dotfiles on each publish. Harmless: Jekyll is disabled by `.nojekyll` and the files are never referenced. |
 | Screenshots/icons 404 on custom domain | Any leftover `basePath`/`BASE_PATH` value — verify `next.config.mjs` has **no `basePath`** and `lib/basePath.ts` is `BASE_PATH = ""`. |
 | Custom domain link not saved | DNS must resolve first (`dig restova.andalussmart.com` → `restaurantappdz-alt.github.io`) before GitHub accepts the domain. |
 
